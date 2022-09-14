@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <h1>Hello <%= profile.userName %></h1>
+    <p><%= profile.bio %></p>
+
+    <!-- <a href="https://www.google.com/" target="_blank" data-color="#9900ff">
+        <section class="card">
+            <h3>YouTube</h3>
+        </section>
+    </a> -->
+
+    <% cards.forEach(card => { %>
+        <a href="https://www.<%= card.link %>" target="_blank" data-color="<%= card.color %>">
+            <section class="card">
+                <h3><%= card.companyName %></h3>
+            </section>
+        </a>
+    <% }) %>
+
+    <form action="/profile/createCard" method="POST">
+        <input type="text" placeholder="Enter Company Name" name='companyName'>
+        <input type="color" name="color">
+        <input type="text" placeholder="Enter Link" name="link">
+        <input type="submit">
+    </form>
+
+    <a href="/logout">Logout</a>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
