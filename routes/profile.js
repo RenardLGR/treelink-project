@@ -4,7 +4,12 @@ const profileController = require('../controllers/profile')
 const cardsController = require('../controllers/card')
 const { ensureAuth } = require('../middleware/auth')
 
-router.get('/', ensureAuth, profileController.getProfile)
+router.get('/:id', ensureAuth, profileController.getProfile)
+
+// router.get('/modify', profileController.getEditProfile)
+// router.get('/modify', ()=> {
+//     console.log('I am here')
+// })
 
 router.post('/createCard', cardsController.createCard)
 

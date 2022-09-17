@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <section class="card">
+        <h3></h3>
+    </section>
+
+    <input class="companyName" type="text" value="Twitch">
+    <input class="cardColor" type="color" value="#9900ff">
+
+
+    <script>
+        setInterval(() => {
+            let inputText = document.querySelector('.companyName').value
+            let inputColor = document.querySelector('.cardColor').value
+
+            let toPopulate = document.querySelector('h3').innerText = inputText
+
+            document.querySelector('.card').style.backgroundColor = inputColor
+        }, 50)
+    </script>
+</body>
+</html>

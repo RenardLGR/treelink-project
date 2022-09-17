@@ -4,41 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile</title>
+    <title>Edit your profile</title>
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
     <h1>This <%= profile.userName %>'s profile</h1>
     <p><%= profile.bio %></p>
 
-    <!-- <a href="https://www.google.com/" target="_blank" data-color="#9900ff">
-        <section class="card">
-            <h3>YouTube</h3>
-        </section>
-    </a> -->
 
     <% cards.forEach(card => { %>
-        <a href="https://www.<%= card.link %>" target="_blank" data-color="<%= card.color %>">
+        <a href="https://www.<%= card.link %>" target="_blank" data-color="<%= card.color %>" class="card-link">
             <section class="card">
                 <h3><%= card.companyName %></h3>
             </section>
         </a>
+        <span class="del big-button">X</span>
+        <span class="upArrow big-button">˄</span>
+        <span class="downArrow big-button">˅</span>
     <% }) %>
 
-    <!-- <form action="/profile/createCard" method="POST">
+    <form action="/profile/createCard" method="POST">
         <input type="text" placeholder="Enter Company Name" name='companyName'>
         <input type="color" name="color">
         <input type="text" placeholder="Enter Link" name="link">
         <input type="submit">
-    </form> -->
+    </form>
 
     <% if(user.id == profile._id){ %>
-        <a href="/edit/profile/<%= user.id %>">Edit profile</a>
+        <a href="/profile/<%= user.id %>">Go back to your profile</a>
     <% } %>
 
-        <div>
-            <a href="/logout">Logout</a>
-        </div>
+    <div>
+        <a href="/logout">Logout</a>
+    </div>
 
     <script src="/js/main.js"></script>
 </body>

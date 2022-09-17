@@ -9,6 +9,7 @@ const logger = require('morgan')
 const connectDB = require('./config/database')
 const mainRoutes = require('./routes/main')
 const profileRoutes = require('./routes/profile')
+const editRoutes = require('./routes/edit')
 
 require('dotenv').config({path: './config/.env'})
 
@@ -37,9 +38,14 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash()) //flash when the signup fails
-  
+
+// app.get('/', (rq, res) => {
+//   res.render('test2')
+// })
+
 app.use('/', mainRoutes)
 app.use('/profile', profileRoutes)
+app.use('/edit', editRoutes)
  
 app.listen(process.env.PORT, ()=>{
     console.log('Server is running, you better catch it!')
@@ -65,3 +71,9 @@ app.listen(process.env.PORT, ()=>{
 //     logo??,
 //     position
 // }
+
+
+// -Make profiles individual
+// -Add the edit button if the profile is ours
+// -Create edit profile page in which the form to add a card will be and also up/down arrows to change their position - and also trash button
+// -Create edit card page with a live vizualisation

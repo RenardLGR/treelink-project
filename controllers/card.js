@@ -5,7 +5,7 @@ module.exports = {
         try{
             await Card.create({authorId: req.user.id, companyName: req.body.companyName, color: req.body.color, link: req.body.link, position: '10'})
             console.log('Todo has been added!')
-            res.redirect('/profile')
+            res.redirect('/edit/profile/' + req.user.id)
         }catch(err){
             console.log(err)
         }

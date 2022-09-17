@@ -3,15 +3,16 @@ const User = require('../models/User')
 
 module.exports = {
     getProfile: async (req,res)=>{
-        console.log(req.user)
+        //console.log(req.user)
         try{
-            const profileUser = await User.find({_id: req.user.id}).lean()
-            const cardItems = await Card.find({authorId: req.user.id}).lean()
+            let profileId = req.params.id
+            const profileUser = await User.findById(profileId).lean()
+            // console.log(profileUser._id);
+            const cardItems = await Card.find({authorId: profileId}).lean()
 
-            res.render('profile.ejs', {user: req.user, profile: profileUser[0], cards: cardItems})
+            res.render('profile.ejs', {user: req.user, profile: profileUser, cards: cardItems})
         }catch(err){
             console.log(err)
         }
     },
-    
 }
