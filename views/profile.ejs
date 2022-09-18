@@ -8,21 +8,18 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>This <%= profile.userName %>'s profile</h1>
+    <h1>This is <%= profile.userName %>'s profile</h1>
     <p><%= profile.bio %></p>
 
-    <!-- <a href="https://www.google.com/" target="_blank" data-color="#9900ff">
-        <section class="card">
-            <h3>YouTube</h3>
-        </section>
-    </a> -->
 
     <% cards.forEach(card => { %>
-        <a href="https://www.<%= card.link %>" target="_blank" data-color="<%= card.color %>">
-            <section class="card">
-                <h3><%= card.companyName %></h3>
+        <section>
+            <section class="card" data-color="<%= card.color %>">
+                <a href="https://www.<%= card.link %>" target="_blank" class="card-link">
+                    <h3><%= card.companyName %></h3>
+                </a>
             </section>
-        </a>
+        </section>
     <% }) %>
 
     <!-- <form action="/profile/createCard" method="POST">

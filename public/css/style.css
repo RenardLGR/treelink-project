@@ -14,4 +14,17 @@ h1{
     width: 50%;
     height: 100px;
     margin: 0 auto;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+a.card-link{
+    display: block;
+    height: 100%;
+    width: 100%;
+    text-decoration: none;
+}
+
+.card-edit{
+    display: inline-block;
 }

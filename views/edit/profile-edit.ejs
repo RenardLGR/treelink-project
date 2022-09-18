@@ -8,19 +8,25 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <h1>This <%= profile.userName %>'s profile</h1>
+    <h1>This is <%= profile.userName %>'s profile</h1>
     <p><%= profile.bio %></p>
 
 
     <% cards.forEach(card => { %>
-        <a href="https://www.<%= card.link %>" target="_blank" data-color="<%= card.color %>" class="card-link">
-            <section class="card">
-                <h3><%= card.companyName %></h3>
+        <section>
+            <section class="card" data-color="<%= card.color %>">
+                <a href="https://www.<%= card.link %>" target="_blank" class="card-link">
+                    <h3><%= card.companyName %></h3>
+                </a>
             </section>
-        </a>
-        <span class="del big-button">X</span>
-        <span class="upArrow big-button">˄</span>
-        <span class="downArrow big-button">˅</span>
+    
+            <section class="card-edit" data-id="<%= card._id %>">
+                <span class="del big-button">Ｘ</span>
+                <span class="upArrow big-button">⮝</span>
+                <span class="downArrow big-button">⮟</span>
+                <span class="edit"><a href="/edit/card/<%= card._id %>">🖊️</a></span>
+            </section>
+        </section>
     <% }) %>
 
     <form action="/profile/createCard" method="POST">

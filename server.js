@@ -73,7 +73,7 @@ app.listen(process.env.PORT, ()=>{
 // }
 
 
-// -Make profiles individual
-// -Add the edit button if the profile is ours
+
 // -Create edit profile page in which the form to add a card will be and also up/down arrows to change their position - and also trash button
 // -Create edit card page with a live vizualisation
+// -Add edit bio/name
