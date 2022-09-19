@@ -9,7 +9,7 @@
 </head>
 <body>
     <h1>This is <%= profile.userName %>'s profile</h1>
-    <p><%= profile.bio %></p>
+    <p><%= profile.bio %><a href="/edit/bio/<%= user.id %>">🖊️</a></p>
 
 
     <% cards.forEach(card => { %>

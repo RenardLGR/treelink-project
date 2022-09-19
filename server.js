@@ -73,7 +73,7 @@ app.listen(process.env.PORT, ()=>{
 // }
 
 
-
 // -Create edit profile page in which the form to add a card will be and also up/down arrows to change their position - and also trash button
-// -Create edit card page with a live vizualisation
 // -Add edit bio/name
+
+//- Research why text area instead of input is not working file: bio-edit.ejs

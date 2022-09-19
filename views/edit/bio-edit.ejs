@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit your card</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <section>
+        <p data-userid="<%= user.id %>"><%= user.bio %></p>
+    </section>
+
+
+    <input class="inputBio" type="text" value="<%= user.bio %>">
+
+    <button class="submit">Submit</button>
+
+    <section>
+        <a href="/profile/<%= user.id %>">Go back to your profile</a>
+    </section>
+
+    <script>
+        let submitButton = document.querySelector(".submit").addEventListener('click', update)
+
+        async function update(){
+            let inputBio = document.querySelector('.inputBio').value
+
+            let userId = document.querySelector("p").dataset.userid
+            //console.log(userId);
+            try{
+                const response = await fetch('/edit/bio/'+userId, {
+                    method: 'put',
+                    headers: {'Content-type': 'application/json'},
+                    body: JSON.stringify({
+                        'bioFromEJS': inputBio,
+                        'userIdFromEJS': userId
+                    })
+                })
+                const data = await response.json()
+                console.log(data)
+                location.reload()
+            }catch(err){
+                console.log(err)
+            }
+
+        }
+
+        setInterval(() => {
+            let inputText = document.querySelector('.inputBio').value
+
+            // console.log(inputText);
+
+            let toPopulate = document.querySelector('p').innerText = inputText
+
+        }, 50)
+    </script>
+</body>

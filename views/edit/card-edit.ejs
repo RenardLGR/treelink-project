@@ -5,8 +5,77 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Edit your card</title>
+
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    hello
+
+
+
+    <section class="card to-populate" data-color="<%= card.color %>" data-id="<%= card._id %>">
+        <a href="https://www.<%= card.link %>" target="_blank" class="card-link">
+            <h3><%= card.companyName %></h3>
+        </a>
+    </section>
+
+
+    <section>
+        <input class="companyName" type="text" value="<%= card.companyName %>">
+        <input class="cardColor" type="color" value="<%= card.color %>">
+        <input class="cardLink" type="text" value="<%= card.link %>">
+    </section>
+
+    <section>
+        <button class="submit">Submit</button>
+    </section>
+
+
+    <section>
+        <a href="/profile/<%= user.id %>">Go back to your profile</a>
+    </section>
+    
+    <script>
+
+        let submitButton = document.querySelector(".submit").addEventListener('click', update)
+
+        async function update(){
+            let inputText = document.querySelector('.companyName').value
+            let inputColor = document.querySelector('.cardColor').value
+            let inputLink = document.querySelector('.cardLink').value
+
+            let cardId = document.querySelector(".to-populate").dataset.id
+            try{
+                const response = await fetch('/edit/card/'+cardId, {
+                    method: 'put',
+                    headers: {'Content-type': 'application/json'},
+                    body: JSON.stringify({
+                        'colorFromEJS': inputColor,
+                        'textFromEJS': inputText,
+                        'linkFromEJS': inputLink,
+                        'cardId': cardId
+                    })
+                })
+                const data = await response.json()
+                console.log(data)
+                location.reload()
+            }catch(err){
+                console.log(err)
+            }
+
+        }
+
+        setInterval(() => {
+            let inputText = document.querySelector('.companyName').value
+            let inputColor = document.querySelector('.cardColor').value
+
+            console.log(inputColor);
+
+            let toPopulate = document.querySelector('h3').innerText = inputText
+
+            // console.log(document.querySelector('.to-populate'));
+            document.querySelector('.to-populate').style.backgroundColor = inputColor
+        }, 50)
+    </script>
+
 </body>
 </html>
