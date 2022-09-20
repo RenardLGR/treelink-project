@@ -13,8 +13,7 @@
         <p data-userid="<%= user.id %>"><%= user.bio %></p>
     </section>
 
-
-    <input class="inputBio" type="text" value="<%= user.bio %>">
+    <textarea class="text-area-input"><%= user.bio %></textarea>
 
     <button class="submit">Submit</button>
 
@@ -26,7 +25,7 @@
         let submitButton = document.querySelector(".submit").addEventListener('click', update)
 
         async function update(){
-            let inputBio = document.querySelector('.inputBio').value
+            let inputBio = document.querySelector('.text-area-input').value
 
             let userId = document.querySelector("p").dataset.userid
             //console.log(userId);
@@ -49,11 +48,11 @@
         }
 
         setInterval(() => {
-            let inputText = document.querySelector('.inputBio').value
+            // let inputText = document.querySelector('.inputBio').value
+            let textAreaContent = document.querySelector('textarea').value
+            // console.log(textAreaContent);
 
-            // console.log(inputText);
-
-            let toPopulate = document.querySelector('p').innerText = inputText
+            let toPopulate = document.querySelector('p').innerText = textAreaContent
 
         }, 50)
     </script>

@@ -28,3 +28,7 @@ a.card-link{
 .card-edit{
     display: inline-block;
 }
+
+.del, .upArrow, .downArrow{
+    cursor: pointer;
+}

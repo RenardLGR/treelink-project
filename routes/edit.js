@@ -15,6 +15,8 @@ router.put('/card/:id', ensureAuth, editController.editCard)
 
 router.put('/bio/:id', ensureAuth, editController.editBio)
 
+router.put('/editCardPosition', ensureAuth, editController.editPositionCard)
+
 router.delete('/deleteCard', ensureAuth, editController.deleteCard)
 
 

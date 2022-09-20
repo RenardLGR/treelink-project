@@ -20,10 +20,14 @@
                 </a>
             </section>
     
-            <section class="card-edit" data-id="<%= card._id %>">
+            <section class="card-edit" data-id="<%= card._id %>" data-position="<%= card.position %>">
                 <span class="del big-button">Ｘ</span>
-                <span class="upArrow big-button">⮝</span>
-                <span class="downArrow big-button">⮟</span>
+                <% if(card.position > 1) { %>
+                    <span class="upArrow big-button">⮝</span>
+                <% } %>
+                <% if(card.position < cards.length) { %>
+                    <span class="downArrow big-button">⮟</span>
+                <% } %>   
                 <span class="edit"><a href="/edit/card/<%= card._id %>">🖊️</a></span>
             </section>
         </section>
@@ -44,6 +48,9 @@
         <a href="/logout">Logout</a>
     </div>
 
-    <script src="/js/main.js"></script>
+    <script src="/js/edit-profile.js"></script>
+    <script>
+
+    </script>
 </body>
 </html>

@@ -10,7 +10,7 @@ module.exports = {
             try{
                 const profileUser = await User.findById(profileToEditId).lean()
                 // console.log(profileUser._id);
-                const cardItems = await Card.find({authorId: profileToEditId}).lean()
+                const cardItems = await Card.find({authorId: profileToEditId}).sort({ position: "asc" }).lean()
     
                 res.render('edit/profile-edit.ejs', {user: req.user, profile: profileUser, cards: cardItems})
             }catch(err){
@@ -70,6 +70,16 @@ module.exports = {
         }
     },
 
+    editPositionCard: async (req, res) => {
+        try{
+            await Card.findOneAndUpdate({_id: req.body.cardIdFromJSFile}, {position: req.body.newPosition})
+            console.log('Updated!')
+            res.json('Updated!')
+        }catch(err){
+            console.log(err);
+        }
+    },
+
     deleteCard: async (req, res) => {
         // console.log(req.body.cardIdFromJSFile)
         try{
@@ -82,8 +92,7 @@ module.exports = {
     },
 
 
-    editBio: async (req, res) => {
-        
+    editBio: async (req, res) => { 
         try{
             await User.findOneAndUpdate({_id: req.body.userIdFromEJS}, {bio: req.body.bioFromEJS})
             console.log('Updated!')

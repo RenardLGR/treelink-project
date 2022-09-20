@@ -10,7 +10,7 @@ module.exports = {
             //const profileUser = await User.find({_id: profileId})
 
 
-            const cardItems = await Card.find({authorId: profileId}).lean()
+            const cardItems = await Card.find({authorId: profileId}).sort({ position: "asc" }).lean()
 
             res.render('profile.ejs', {user: req.user, profile: profileUser, cards: cardItems})
 

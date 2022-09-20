@@ -1,9 +1,8 @@
+//DECLARATIONS
 const deleteBtns = document.querySelectorAll('.del')
 const upArrowBtns = document.querySelectorAll('.upArrow')
 const downArrowBtns = document.querySelectorAll('.downArrow')
-// const editBtns = document.querySelectorAll('.edit')
-// const todoItem = document.querySelectorAll('span.not')
-// const todoComplete = document.querySelectorAll('span.completed')
+
 
 Array.from(deleteBtns).forEach((el)=>{
     el.addEventListener('click', deleteCard)
@@ -17,21 +16,34 @@ Array.from(downArrowBtns).forEach((el)=>{
     el.addEventListener('click', positionDown)
 })
 
-// Array.from(editBtns).forEach((el)=>{
-//     el.addEventListener('click', editCard)
-// })
 
-// Array.from(todoItem).forEach((el)=>{
-//     el.addEventListener('click', markComplete)
-// })
 
-// Array.from(todoComplete).forEach((el)=>{
-//     el.addEventListener('click', markIncomplete)
-// })
-
+//SERVER CALLS
 async function deleteCard(){
+    //this function decreases every cards that come after the one deleted one position (pushing them to the top)
+    //and deletes the card we want to delete
     const cardId = this.parentNode.dataset.id
+    const position = Number(this.parentNode.dataset.position)
     try{
+        Array.from(document.querySelectorAll('.card-edit')).forEach(async (el) => {
+            //decreases for every card that comes after the one deleted
+            if(Number(el.dataset.position)>position){
+                let cardId = el.dataset.id
+                let pos = Number(el.dataset.position)
+                const card = await fetch('/edit/editCardPosition', {
+                    method: 'put',
+                    headers: {'Content-type': 'application/json'},
+                    body: JSON.stringify({
+                        'cardIdFromJSFile': cardId,
+                        newPosition: pos-1
+                    })
+                })
+                const data1 = await card.json()
+                console.log(data1)
+            }
+        })
+        
+        //deletes the card
         const response = await fetch('/edit/deleteCard', {
             method: 'delete',
             headers: {'Content-type': 'application/json'},
@@ -128,43 +140,11 @@ async function positionDown(){
 
 }
 
-// async function markComplete(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('todos/markComplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
-
-// async function markIncomplete(){
-//     const todoId = this.parentNode.dataset.id
-//     try{
-//         const response = await fetch('todos/markIncomplete', {
-//             method: 'put',
-//             headers: {'Content-type': 'application/json'},
-//             body: JSON.stringify({
-//                 'todoIdFromJSFile': todoId
-//             })
-//         })
-//         const data = await response.json()
-//         console.log(data)
-//         location.reload()
-//     }catch(err){
-//         console.log(err)
-//     }
-// }
 
 
+
+
+//STYLING
 let cards = document.querySelectorAll('.card')
 
 cards.forEach(card => {
@@ -172,5 +152,3 @@ cards.forEach(card => {
     // console.log(color);
     card.style.backgroundColor = color
 })
-
-
